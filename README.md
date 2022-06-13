@@ -9,3 +9,7 @@ visualize your training streaks and detailed stats on each language you have tra
 - [ ] Heatmap for each year (frequency of solved katas)
 - [ ] Timeseries (frequency of solved katas)
 - [ ] Donut chart (most used languages)
+
+# Usage # 
+
+## Dependencies ##
