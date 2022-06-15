@@ -16,7 +16,7 @@ visualize your training streaks and detailed stats on each language you have tra
 [View online interactive version]()
 
 ## Interactive pie charts ##
-![](charts/pie.png)
+![](charts/newplot(1).png)
 [View online interactive version]()
 
 # Usage # 
