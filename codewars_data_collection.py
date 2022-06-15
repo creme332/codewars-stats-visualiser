@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jun 15 10:28:52 2022
-
-@author: user
-"""
-
 import requests
 import json
 import pandas as pd
@@ -25,11 +18,10 @@ from ratelimit import limits, sleep_and_retry
 #
 # =========================================================================
 
-# 30 API calls per minute
-CALLS = 10000  # < 150 when number of pages > 1
-RATE_LIMIT = 60
-
 # At 50 API calls per minute, estimated time in seconds = total katas solved
+
+CALLS = 50  # < 150 when number of pages > 1
+RATE_LIMIT = 60
 
 
 @sleep_and_retry
@@ -113,7 +105,6 @@ def CollectData(user):
 # 7 kyu	2	23	0
 # 8 kyu	5	39	1
 # =============================================================================
-    return True
 
 
 def get_kata_rank(kata_id):  # returns the rank of a kata as a string
