@@ -5,8 +5,7 @@
 </p>
 
 
-<img src = "https://img.shields.io/badge/codewars%20API-v1-green">
-<img src="https://img.shields.io/badge/Python-3.9.7-orange"> <img src = "https://img.shields.io/badge/Panda-1.3.3-blue"> <img src = "https://img.shields.io/badge/MatPlotLib-3.4.3-yellowgreen"> <img src = "https://img.shields.io/badge/Plotly-5.8.0-lightgrey">
+<img src = "https://img.shields.io/badge/codewars%20API-v1-green"><img src="https://img.shields.io/badge/Python-3.9.7-orange"><img src = "https://img.shields.io/badge/Panda-1.3.3-blue"> <img src = "https://img.shields.io/badge/MatPlotLib-3.4.3-yellowgreen"><img src = "https://img.shields.io/badge/Plotly-5.8.0-lightgrey">
 
 
 
@@ -16,15 +15,15 @@
 
 ## Interactive heatmap ##
 ![](charts/sampleHeatmap.png)
-[View online interactive version]()
+[View online interactive version](https://creme332.github.io/interactive/codewars/heatmap/)
 
 ## Interactive timeseries ##
 ![](charts/sampleTimeseries.png)
-[View online interactive version]()
+[View online interactive version](https://creme332.github.io/interactive/codewars/timeseries/)
 
 ## Interactive pie charts ##
 ![](charts/samplePie.png)
-[View online interactive version]()
+[View online interactive version](https://creme332.github.io/interactive/codewars/piechart/)
 
 # Usage # 
 
@@ -70,5 +69,6 @@ destination_file_name +
 # Future work #
 - [ ] Extract streaks data (most in a single day, most in a single week, most consecutive days)
 - [ ] Extract first and last completed date for each language
-- Visualise completed kata vs language
-- [ ] Fix glitch in interactive pie chart (sloppy animation because of size of pies is not constant)
+- [ ]Visualise completed kata vs language
+- [ ] Fix glitch in interactive pie chart (sloppy animation because of small lines representing small % emerging from pie chart)
+- [ ] Login to extract solution votes, ...
