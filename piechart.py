@@ -76,4 +76,4 @@ def InteractivePieChart(source_file_name, destination_file_name):
 
     fig.write_html(destination_file_name)
 
-    fig.show()
+    # fig.show()

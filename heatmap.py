@@ -7,9 +7,6 @@ Created on Mon Jun 13 20:29:58 2022
 
 # =============================================================================
 # Purpose : Create a heatmap and save it as png image
-# Add info to legend to indicate log scale
-# position title correctly
-# create a random dataset for readme : https://pypi.org/project/calplot/
 # =============================================================================
 import pandas as pd
 import numpy as np

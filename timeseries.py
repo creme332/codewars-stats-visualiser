@@ -37,4 +37,4 @@ def CreateTimeSeries(source_file_name, destination_file_name):
             ])))
 
     fig.write_html(destination_file_name)  # .pdf or .svg also available
-    fig.show()
+    #fig.show()

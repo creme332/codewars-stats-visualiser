@@ -20,7 +20,7 @@ from ratelimit import limits, sleep_and_retry
 
 # At 50 API calls per minute, estimated time in seconds = total katas solved
 
-CALLS = 50  # < 150 when number of pages > 1
+CALLS = 50 
 RATE_LIMIT = 60
 
 
