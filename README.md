@@ -13,7 +13,8 @@
 ## View  your activity ##
 ![](charts/samplebasicheatmap1.png)
 
-![](charts/sampletimeseries.png)[View online interactive version](https://creme332.github.io/interactive/codewars/timeseries/)
+![](charts/sampletimeseries.png)
+[View online interactive version](https://creme332.github.io/interactive/codewars/timeseries/)
 
 ## View your training stats ##
 ![](charts/sampleheatmap2.png)
@@ -67,7 +68,7 @@ Example : date of completion of each kata.
 `katainfo.csv` contains kata-specific data for all katas you have completed. This data was extracted using codewars API. 
 Example : rank of each kata.
 
-`langrank.csv ` contains data showing the relationship between the programming language used to solve a kata and the rank of the kata. This data was derived from `compkatas.csv` and `katainfo.csv`.
+`langrank.csv` contains data showing the relationship between the programming language used to solve a kata and the rank of the kata. This data was derived from `compkatas.csv` and `katainfo.csv`.
 
 ### File dependencies and data required by each visualisation function
 ```
@@ -126,7 +127,6 @@ destination_file_name +
 ## Features
 - [ ] Add option to compare different users on the same charts
 - [ ] Add an [interactive heatmap](https://towardsdatascience.com/developing-a-timeseries-heatmap-in-python-using-plotly-fcf1d69575a3) with option to toggle years. (similar to Leetcode's heatmap) 
-
 - [ ] Add more visuals : chord diagram, bar chart, bubble chart
 - [ ] Login to extract solution votes, ...
 - [ ] Authored kata stats
@@ -140,7 +140,7 @@ destination_file_name +
 
 ## Performance
 - [ ] Speed up API requests with [Async](https://www.youtube.com/watch?v=ln99aRAcRt0&ab_channel=PrettyPrinted)
-- [ ] In `piechart.py` optimise `get_language_rank_df()` by using panda [functions](https://stackoverflow.com/questions/35623772/changing-structure-of-pandas-dataframe).
+- [ ] In `main.py` optimise `get_language_rank_df()` by using panda [functions](https://stackoverflow.com/questions/35623772/changing-structure-of-pandas-dataframe).
 
 ## Other
 - [x] Double check that all links in README are still working.
