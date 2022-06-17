@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jun 13 20:29:58 2022
-
-@author: user
-"""
-
 # =============================================================================
 # Purpose : Create a heatmap and save it as png image
+# Add info to legend to indicate log scale
+# position title correctly
+# create a random dataset for readme : https://pypi.org/project/calplot/
 # =============================================================================
 import pandas as pd
 import numpy as np
@@ -20,40 +16,36 @@ pio.renderers.default = 'browser'
 def BasicHeatmap(single_year, source_file_name, destination_file_name):
 
     df = pd.read_csv(source_file_name, sep='\t')
-    df['Date'] = pd.to_datetime(df['Date'])
 
-    # for more uniform color distribution use a log scale
-    df['DateValue'] = np.log10(df['DateValue'])
-    # note : all values in DateValue column are at least 1
+    # convert completedAt column to datetime datatype
+    # https://stackoverflow.com/a/16853161/17627866
+    df['completedAt'] = df['completedAt'].astype('datetime64[ns]')
 
     if single_year == -1:  # plot for all years
-        # create a series
-        column_headings = df.columns
-        my_dates = df[column_headings[0]].tolist()
-        my_data = df[column_headings[1]].tolist()
-        my_series = pd.Series(data=my_data, index=my_dates)
-        # plot
-        calplot.calplot(data=my_series, figsize=(16, 8),
+        series = df.groupby('completedAt').size()
+
+        calplot.calplot(data=series, figsize=(10, 5), colorbar=True,
                         suptitle='Number of katas solved')
     else:  # single year
 
         # filter dataframe by year
-        df = df[df['Date'].dt.year == single_year]
+        df_filtered = df[df['completedAt'].dt.strftime(
+            '%Y') == str(single_year)]
 
-        if df.empty:
-            print("No data available for", single_year)
+        if df_filtered.empty:
+            print("BasicHeatmap() ERROR : No data available for", single_year)
             return
         # create a series
-        column_headings = df.columns
-        my_dates = df[column_headings[0]].tolist()
-        my_data = df[column_headings[1]].tolist()
-        my_series = pd.Series(data=my_data, index=my_dates)
+        series = df_filtered.groupby('completedAt').size()
 
-        calplot.calplot(data=my_series, figsize=(16, 8),
+        calplot.calplot(data=series, figsize=(10, 5), colorbar=True,
                         suptitle='Number of katas solved')
 
     # save file
     plt.savefig(destination_file_name, bbox_inches='tight')
+
+
+#BasicHeatmap(2019, "data/creme332_compkatas", "charts/basicheatmap1.png")
 
 
 def InteractiveHeatmap(source_file_name, destination_file_name):

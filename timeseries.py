@@ -1,21 +1,22 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jun 13 20:29:58 2022
-
-@author: user
-"""
-
 import pandas as pd
 import plotly.express as px
 import plotly.io as pio
 pio.renderers.default = "browser"
 
 
-def CreateTimeSeries(source_file_name, destination_file_name):
+def TimeSeries(source_file_name, destination_file_name):
     df = pd.read_csv(source_file_name, sep='\t')
-    df['Date'] = pd.to_datetime(df['Date'])
 
-    fig = px.line(df, x="Date", y=df.columns,
+    # convert completedAt column to datetime datatype
+    df['completedAt'] = df['completedAt'].astype('datetime64[ns]')
+    # get rid of time info
+    # https://stackoverflow.com/a/48155304/17627866
+    df['completedAt'] = df['completedAt'].dt.normalize()
+
+    # extract required data : date + frequency
+    df = df.groupby('completedAt').size()
+
+    fig = px.line(df,
                   title='Number of katas solved',
                   )
     fig.update_traces(mode="markers+lines", hovertemplate=None)
@@ -24,7 +25,7 @@ def CreateTimeSeries(source_file_name, destination_file_name):
 
     fig.update_xaxes(
         dtick="M1",
-        tickformat='%d %B %Y',
+        tickformat='%d %B %Y',  # show day, month, year
         ticklabelmode="period",
         rangeslider_visible=True,  # time slider
         rangeselector=dict(
@@ -38,3 +39,6 @@ def CreateTimeSeries(source_file_name, destination_file_name):
 
     fig.write_html(destination_file_name)  # .pdf or .svg also available
     #fig.show()
+
+
+# TimeSeries("data/creme332_compkatas", "")
