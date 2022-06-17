@@ -1,7 +1,8 @@
 <p align="center">
 <img src="codewarslogo.png" class="center">
  <h2 align="center"> stats visualiser</h2>
- <p align="center">Visualize your training streaks and detailed stats on each language you have trained on. </p>
+ <p align="center">Visualize your <a href="https://www.codewars.com/">codewars</a>
+ training streaks and detailed stats on each language you have trained on. </p>
 </p>
 
 
