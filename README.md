@@ -66,9 +66,6 @@ main('abcda') # run
 
 `katalibrary.csv` contains kata-specific data of around 11,000 katas. This list is pre-made and is updated if a user has solved katas not found within this list.
 
-> Some information found in `katalibrary.csv` may be outdated. For example : totalAttempts, totalCompleted, totalStars, voteScore.
-
-
 `compkatas.csv` contains user-specific data for all katas you have completed. This data was extracted using [codewars API](https://dev.codewars.com/#introduction).
 Example : date of completion of each kata.
 
@@ -95,7 +92,11 @@ Example : date of completion of each kata.
 |    | id                       | name                  | slug                  | category   | publishedAt              |   approvedAt | languages                                                                                                           | url                                                    | rank                                         | createdAt                | createdBy                                                                  |                                                                                                                                                                             |   totalAttempts |   totalCompleted |   totalStars |   voteScore | tags           | contributorsWanted   | unresolved                      |   approvedBy |
 |---:|:-------------------------|:----------------------|:----------------------|:-----------|:-------------------------|-------------:|:--------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:---------------------------------------------|:-------------------------|:---------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------:|-----------------:|-------------:|------------:|:---------------|:---------------------|:--------------------------------|-------------:|
 |  0 | 51b66044bce5799a7f000003 | Roman Numerals Helper | roman-numerals-helper | algorithms | 2013-06-10T23:54:10.738Z |          nan | ['javascript', 'coffeescript', 'ruby', 'python', 'cpp', 'c', 'julia', 'swift', 'java', 'csharp', 'fsharp', 'cobol'] | https://www.codewars.com/kata/51b66044bce5799a7f000003 | {'id': -4, 'name': '4 kyu', 'color': 'blue'} | 2013-06-10T23:24:52.310Z | {'username': 'jhoffner', 'url': 'https://www.codewars.com/users/jhoffner'} | Create a RomanNumerals class..                                                                                                              |          100014 |            14597 |         1417 |        1286 | ['Algorithms'] | True                 | {'issues': 3, 'suggestions': 2} |          nan |
+
+> ⚠️Some information found in `katalibrary.csv` may be outdated. For example : totalAttempts, totalCompleted, totalStars, voteScore. None of these data have been used.
+ 
 </details>
+
 
 ## File-Function dependencies
 
