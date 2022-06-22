@@ -11,7 +11,7 @@
 
 
 # Features #
-[View online interactive version]()
+[View online interactive version](https://creme332.github.io/codewars-stats-visualiser/)
 
 ## View  your activity ##
 ![](charts/samplebasicheatmap1.png)
@@ -101,12 +101,14 @@ Example : date of completion of each kata.
 
 Function |katalibrary.csv  | compkatas.csv|katainfo.csv |langrank.csv   |  Info plotted|
 |---|---|---|---|---|---|
-PieChart()|  x|x|yes|x |kata tags + kata count 
-AnimatedPieChart()|x|x|yes|yes |language + kata rank + kata count
-HorizontalBarChart()|x|x|yes|x |kata rank + kata count
-TimeSeries()|x|yes|x| x|date + kata count
-BasicHeatmap()| x|yes|x|x |date + kata count
-InteractiveHeatmap()|x|yes|x| yes|language + kata rank  + kata count
+CreateKataInfo()| ✔️|✔️|🔴 |🔴 |None
+create_language_rank_df()| 🔴|✔️|✔️|🔴 |None
+PieChart()|  🔴|🔴|✔️|🔴 |kata tags + kata count 
+AnimatedPieChart()|🔴|🔴|🔴|✔️ |language + kata rank + kata count
+HorizontalBarChart()|🔴|🔴|✔️|🔴 |kata rank + kata count
+TimeSeries()|🔴|✔️|🔴| 🔴|date + kata count
+BasicHeatmap()| 🔴|✔️|🔴|🔴 |date + kata count
+InteractiveHeatmap()|🔴|🔴|🔴| ✔️|language + kata rank  + kata count
 
 > Key : PieChart() needs `katainfo.csv` to plot information about kata tags and kata count.
 
@@ -130,11 +132,9 @@ destination_file_name +
 - All other python scripts are used for data visualisation.
 
 # Future work #
-- update links in readme
-- add emoji to table
 ## Features
 - [ ] Add option to compare different users on the same charts
-- [ ] Add an [interactive heatmap](https://towardsdatascience.com/developing-a-timeseries-heatmap-in-python-using-plotly-fcf1d69575a3) with option to toggle years. (similar to Leetcode's heatmap) 
+- [ ] Add an [interactive calendar heatmap](https://towardsdatascience.com/developing-a-timeseries-heatmap-in-python-using-plotly-fcf1d69575a3) with option to toggle years. (similar to Leetcode's heatmap) 
 - [ ] Add more visuals : chord diagram, bar chart, bubble chart
 - [ ] Login to extract solution votes, ...
 - [ ] Authored kata stats
