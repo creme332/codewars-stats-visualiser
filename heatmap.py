@@ -1,9 +1,3 @@
-# =============================================================================
-# Purpose : Create a heatmap and save it as png image
-# Add info to legend to indicate log scale
-# position title correctly
-# create a random dataset for readme : https://pypi.org/project/calplot/
-# =============================================================================
 import pandas as pd
 import numpy as np
 import calplot
@@ -24,7 +18,7 @@ def BasicHeatmap(single_year, source_file_name, destination_file_name):
     if single_year == -1:  # plot for all years
         series = df.groupby('completedAt').size()
 
-        calplot.calplot(data=series, figsize=(10, 5), colorbar=True,
+        calplot.calplot(data=series, colorbar=True,
                         suptitle='Number of katas solved')
     else:  # single year
 
