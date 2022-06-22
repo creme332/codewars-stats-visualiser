@@ -11,24 +11,21 @@
 
 
 # Features #
+[View online interactive version]()
+
 ## View  your activity ##
 ![](charts/samplebasicheatmap1.png)
 
 ![](charts/sampletimeseries.png)
-[View online interactive version](https://creme332.github.io/interactive/codewars/timeseries/)
 
 ## View your training stats ##
 ![](charts/sampleheatmap2.png)
-[View online interactive version](https://creme332.github.io/interactive/codewars/heatmap/)
 
 ![](charts/samplepie1.png)
-[View online interactive version](https://creme332.github.io/interactive/codewars/pie1/)
 
 ![](charts/samplebarchart.png)
-[View online interactive version](https://creme332.github.io/interactive/codewars/barchart/)
 
 ![](charts/samplepie2.png)
-[View online interactive version](https://creme332.github.io/interactive/codewars/pie2/)
 
 
 # Usage # 
@@ -45,7 +42,7 @@ requests 2.26.0
 ratelimit 2.2.1
 ```
 - Fork project.
-- Install dependencies.
+- Install all dependencies. (exact versions are not required)
 - Run `main.py` with your username as parameter to the main function. 
 ```python
 # Example 
@@ -59,72 +56,82 @@ def main(user):
 main('abcda') # run
 
 ```
-- All data collected from your profile are saved to the `data` folder and all charts generated are saved to the `charts` folder. 
+> All data collected from your profile are saved to the `data` folder and all charts generated are saved to the `charts` folder. 
 
-## Files explanation
+> Katas in beta have no rank and have been omitted during data analysis.
 
-`compkatas.csv` contains user-specific data for all katas you have completed. This data was extracted using codewars API.
+> You should expect to wait 2 mins at most for your results to come in.
+
+# Files explanation
+
+`katalibrary.csv` contains kata-specific data of around 11,000 katas. This list is pre-made and is updated if a user has solved katas not found within this list.
+
+> Some information found in `katalibrary.csv` may be outdated. For example : totalAttempts, totalCompleted, totalStars, voteScore.
+
+
+`compkatas.csv` contains user-specific data for all katas you have completed. This data was extracted using [codewars API](https://dev.codewars.com/#introduction).
 Example : date of completion of each kata.
 
-`katainfo.csv` contains kata-specific data for all katas you have completed. This data was extracted using codewars API. 
-Example : rank of each kata.
+`katainfo.csv` contains kata-specific data for all katas a specific user has completed. This file is built from `katalibrary.csv` and `compkatas.csv`.
 
-`langrank.csv` contains data showing the relationship between the programming language used to solve a kata and the rank of the kata. This data was derived from `compkatas.csv` and `katainfo.csv`.
+`langrank.csv` contains data showing the relationship between the programming language used to solve a kata and the rank of the kata. This file was built from `compkatas.csv` and `katainfo.csv`.
 
-### File dependencies and data required by each visualisation function
-```
-└───katainfo.csv
-│   │ Piechart() : kata tags + kata count 
-|   |   AnimatedPieChart() : language + kata rank + kata count 
-|   |   HorizontalBarChart() : kata rank + kata count
-|   |   langrank.csv 
-│   
-│    
-│   
-└───compkatas.csv
-|   │   TimeSeries() : date + kata count 
-|   |   BasicHeatmap() : date + kata count
-|   │   langrank.csv 
-|   
-|____langrank.csv 
-|    |  InteractiveHeatmap() : language + kata rank + kata count
-|    |  AnimatedPieChart() : language + kata rank + kata count *
-|    
+<details>
+  <summary>Sample data from each file</summary>
+  
+## compkatas.csv
+|    | id                       | name                           | slug                           | completedAt              | completedLanguages   |
+|---:|:-------------------------|:-------------------------------|:-------------------------------|:-------------------------|:---------------------|
+|  0 | 58db9545facc51e3db00000a | A Simple Music Encoder         | a-simple-music-encoder         | 2022-06-13T13:01:40.015Z | ['python']           |
+|  1 | 546f922b54af40e1e90001da | Replace With Alphabet Position | replace-with-alphabet-position | 2022-06-11T17:55:25.622Z | ['python']           |
 
+## langrank.csv
+|    | index   |   cpp |   python |   vb |
+|---:|:--------|------:|---------:|-----:|
+|  0 | 1 kyu   |     0 |        0 |    0 |
+|  1 | 2 kyu   |     2 |        0 |    0 |
 
-How to interpret ? 
-Piechart() function uses kata tags and kata count information available from katainfo.csv
-```
+## katalibrary.csv // katainfo.csv 
+|    | id                       | name                  | slug                  | category   | publishedAt              |   approvedAt | languages                                                                                                           | url                                                    | rank                                         | createdAt                | createdBy                                                                  |                                                                                                                                                                             |   totalAttempts |   totalCompleted |   totalStars |   voteScore | tags           | contributorsWanted   | unresolved                      |   approvedBy |
+|---:|:-------------------------|:----------------------|:----------------------|:-----------|:-------------------------|-------------:|:--------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:---------------------------------------------|:-------------------------|:---------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------:|-----------------:|-------------:|------------:|:---------------|:---------------------|:--------------------------------|-------------:|
+|  0 | 51b66044bce5799a7f000003 | Roman Numerals Helper | roman-numerals-helper | algorithms | 2013-06-10T23:54:10.738Z |          nan | ['javascript', 'coffeescript', 'ruby', 'python', 'cpp', 'c', 'julia', 'swift', 'java', 'csharp', 'fsharp', 'cobol'] | https://www.codewars.com/kata/51b66044bce5799a7f000003 | {'id': -4, 'name': '4 kyu', 'color': 'blue'} | 2013-06-10T23:24:52.310Z | {'username': 'jhoffner', 'url': 'https://www.codewars.com/users/jhoffner'} | Create a RomanNumerals class..                                                                                                              |          100014 |            14597 |         1417 |        1286 | ['Algorithms'] | True                 | {'issues': 3, 'suggestions': 2} |          nan |
+</details>
 
+## File-Function dependencies
 
+Function |katalibrary.csv  | compkatas.csv|katainfo.csv |langrank.csv   |  Info plotted|
+|---|---|---|---|---|---|
+PieChart()|  x|x|yes|x |kata tags + kata count 
+AnimatedPieChart()|x|x|yes|yes |language + kata rank + kata count
+HorizontalBarChart()|x|x|yes|x |kata rank + kata count
+TimeSeries()|x|yes|x| x|date + kata count
+BasicHeatmap()| x|yes|x|x |date + kata count
+InteractiveHeatmap()|x|yes|x| yes|language + kata rank  + kata count
 
-
-## Reduce time taken to collect data ##
-Default API calls settings in `codewars_data_collection.py` :
-```python
-# At most 50 API calls are made per minute
-CALLS = 50 
-RATE_LIMIT = 60
-# Approx time in seconds to collect all data = (number of katas) * 1.2
-```
-This current setting prevents the program from  making too many API calls. However, this can cause the data collection process to take longer.
-
-To speed up the process, you increase the value of `CALLS`. As a rule of thumb, if you have solved below 200 katas in total, there's no need to limit number of API calls. You can update the value `CALLS` to 10000. This will allow the program to make the maximum API calls possible without causing any error.
+> Key : PieChart() needs `katainfo.csv` to plot information about kata tags and kata count.
 
 ## Change file extension of charts ##
-- All the interactive charts will be saved as an html file. File formats can be changed by modifying the file extensions in `main()` function 
+- All the interactive charts will be saved as an html file. File formats can be changed by modifying the file extensions in `main()` function. 
 ```python
 # available extensions = pdf, svf, png, html
 InteractiveHeatmap(source_file_name + "language_rank_count",
 destination_file_name +
 "interactiveheatmap.pdf") # <- change file extension 
 ```
+
+# How program works 
+
+- In `main.py`, the `main()` function takes as argument the username of a codewars account.
+- To extract a list of completed katas by this user, `ExtractCompletedChallenges()` is called from `dataminer.py`. Result obtained from codewars API is saved to `compkatas.csv`.
+- `UpdateKataLibrary()` from `katalibrary.py` is then called to compare the list of completed katas by user and the list of katas in `katalibrary.csv`. If there are missing katas in library, further calls are made to codewars server to update library.
+- At this point, we have all the katas completed by a user and all the information about each kata completed.
+- `CreateKataInfo()` from `main.py` will filter `katalibrary.csv` using the list of katas completed. The final result contains kata-specific information for each kata completed by user. Result is saved to `katainfo.csv`.
+- `create_language_rank_df()` will extract data relating language used to solve a specific kata and the rank of the kata.
+- All other python scripts are used for data visualisation.
+
 # Future work #
-
-## Bugs
-- [x] Fix glitch in interactive pie chart (sloppy animation because of small lines representing small % emerging from pie chart)
-- [x] Fix  : `Indexing a timezone-aware DatetimeIndex with a timezone-naive datetime is deprecated and will raise KeyError in a future version.  Use a timezone-aware object instead.` Obtained when running heatmap and timeseries.
-
+- update links in readme
+- add emoji to table
 ## Features
 - [ ] Add option to compare different users on the same charts
 - [ ] Add an [interactive heatmap](https://towardsdatascience.com/developing-a-timeseries-heatmap-in-python-using-plotly-fcf1d69575a3) with option to toggle years. (similar to Leetcode's heatmap) 
@@ -140,11 +147,4 @@ destination_file_name +
 - [ ] Visualise completed kata vs language
 
 ## Performance
-- [ ] Speed up API requests with [Async](https://www.youtube.com/watch?v=ln99aRAcRt0&ab_channel=PrettyPrinted)
 - [ ] In `main.py` optimise `get_language_rank_df()` by using panda [functions](https://stackoverflow.com/questions/35623772/changing-structure-of-pandas-dataframe).
-
-## Other
-- [x] Double check that all links in README are still working.
-- [ ] Refactor code. 
-- [ ] Display all visualisation and other stats in a single HTML file. (use font, style,... as codewars)
-
