@@ -6,7 +6,6 @@ from ratelimit import limits, sleep_and_retry
 CALLS = 50
 RATE_LIMIT = 60
 
-
 @sleep_and_retry
 @limits(calls=CALLS, period=RATE_LIMIT)
 def call_api(url):
@@ -14,27 +13,6 @@ def call_api(url):
     if response.status_code < 200 or response.status_code >= 300:
         raise Exception('API response: {}'.format(response.status_code))
     return response  # codes in the 2xx range indicate success,
-
-
-def ExtractUserInfo():
-    return
-
-
-def ExtractKataInfo(source_file_name, destination_filename):
-    df = pd.read_csv(source_file_name, sep='\t')
-    all_ids = df['id'].tolist()  # list of id of completed katas
-    kata_info = []
-
-    for kata_id in all_ids:
-        url = 'https://www.codewars.com/api/v1/code-challenges/' + kata_id
-        r = call_api(url)
-        input_json = r.text
-        input_dict = json.loads(input_json)
-        kata_info.append(input_dict)
-
-    df = pd.DataFrame(kata_info)
-    df.to_csv(destination_filename, sep='\t',
-              encoding='utf-8-sig', index=False)
 
 
 def ExtractCompletedChallenges(user, destination_filename):
@@ -62,7 +40,3 @@ def ExtractCompletedChallenges(user, destination_filename):
                       'completedAt', 'completedLanguages'])
     df.to_csv(destination_filename, sep='\t',
               encoding='utf-8-sig', index=False)
-
-
-# ExtractCompletedChallenges('creme332')
-# ExtractKataInfo('completedKatas', 'katainfo')

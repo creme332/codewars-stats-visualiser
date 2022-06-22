@@ -1,4 +1,5 @@
-from dataminer import ExtractKataInfo, ExtractCompletedChallenges
+from dataminer import ExtractCompletedChallenges
+from katalibrary import UpdateKataLibrary
 from heatmap import BasicHeatmap, InteractiveHeatmap
 from piechart import AnimatedPieChart, PieChart
 from timeseries import TimeSeries
@@ -6,15 +7,16 @@ from barchart import HorizontalBarChart
 import time
 
 import ast
-import plotly.express as px
 from ast import literal_eval
 import pandas as pd
-import csv
 
-def create_language_rank_df(compkatas_path, katainfo_path, destination_filename):
+
+def create_language_rank_df(compkatas_path,
+                            katainfo_path,
+                            destination_filename):
     # NOTE: Must find a more efficient way of getting this data.
 
-    # 2 files required : katainfo and compkatas
+    # 3 files required : katainfo, compkatas, library
 
     # Step 1 : Create a df with columns : id, rank
     # https://stackoverflow.com/a/58155933/17627866
@@ -46,7 +48,8 @@ def create_language_rank_df(compkatas_path, katainfo_path, destination_filename)
         lang = row['completedLanguages']
         kata_rank = row['rankname']
         if lang in language_rank_count.keys():
-            language_rank_count[lang][kata_rank] += 1
+            if kata_rank is not None:  # katas in beta have no rank so ignore
+                language_rank_count[lang][kata_rank] += 1
         else:
             rank_frequency = {
                 '1 kyu': 0, '2 kyu': 0, '3 kyu': 0, '4 kyu': 0,
@@ -61,19 +64,29 @@ def create_language_rank_df(compkatas_path, katainfo_path, destination_filename)
                    encoding='utf-8-sig', index=False)
 
 
+def CreateKataInfo(compkatas_path, library_path, kata_info_path):
+    # take out only info of katas which user has solved from library
+    df = pd.read_csv(compkatas_path, sep='\t')  # completed katas info
+    library = pd.read_csv(library_path, sep='\t')
+    id_list = df['id'].tolist()  # ids of completed katas
+
+    # filter library by id
+    result = library[library['id'].isin(id_list)]
+    result.to_csv(kata_info_path, sep='\t',
+                  encoding='utf-8-sig', index=False)
+
+
 def main(user):
+    start_time = time.time()
+
     compkatas_path = "data/" + str(user) + "_" + "compkatas"
     katainfo_path = "data/" + str(user) + "_" + "katainfo"
     lang_rank_path = "data/" + str(user) + "_" + "langrank"
-    
-    start_time = time.time()
-    # save compkata file to compkatas_path
+    library_path = "data/katalibrary.csv"
+
     ExtractCompletedChallenges(user, compkatas_path)
-
-    # use data from compkatas_path and save new file to katainfo_path
-    ExtractKataInfo(compkatas_path, katainfo_path)
-
-    print("--- %s seconds ---" % (time.time() - start_time))
+    UpdateKataLibrary(library_path, compkatas_path)
+    CreateKataInfo(compkatas_path, library_path, katainfo_path)
 
     # create charts
 
@@ -92,5 +105,6 @@ def main(user):
     AnimatedPieChart(lang_rank_path, "charts/pie2.html")
     InteractiveHeatmap(lang_rank_path, "charts/heatmap2.html")
 
+    print("--- %s seconds ---" % (time.time() - start_time))
 
 main('your username here')
