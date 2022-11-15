@@ -19,7 +19,8 @@ def print_progress_bar(index, total, label=""):
     progress = index / total
     sys.stdout.write('\r')
     sys.stdout.write(
-        f"[{'=' * int(n_bar * progress):{n_bar}s}] {int(100 * progress)}%  {label}")
+        f"[{'=' * int(n_bar * progress):{n_bar}s}]"
+        + f" {int(100 * progress)}%  {label}")
     sys.stdout.flush()
 
 

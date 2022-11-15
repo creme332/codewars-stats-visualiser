@@ -49,11 +49,12 @@ def AnimatedPieChart(source_file_name, destination_file_name):
         my_data = new_df[new_df.columns[1]].tolist()
 
         frames_list.append(
-            go.Frame(data=[go.Pie(labels=labels, text=labels,
-                                  hovertemplate="%{value} katas solved<extra></extra>",
-                                  title=df.columns[i],
-                                  values=my_data,
-                                  hole=.3, sort=False)])
+            go.Frame(
+                data=[go.Pie(labels=labels, text=labels,
+                             hovertemplate="%{value} katas solved<extra></extra>",
+                             title=df.columns[i],
+                             values=my_data,
+                             hole=.3, sort=False)])
         )
     # create fig dictionary
     fig_dict = {

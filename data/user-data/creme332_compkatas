@@ -1,4 +1,9 @@
 ﻿id	name	slug	completedAt	completedLanguages
+5aa67541373c2e69a20000c9	Tic-Tac-Toe (3D)	tic-tac-toe-3d	2022-10-03T03:32:10.452Z	['javascript']
+54da539698b8a2ad76000228	Take a Ten Minutes Walk	take-a-ten-minutes-walk	2022-07-13T17:42:27.804Z	['cpp']
+523b623152af8a30c6000027	Function 2 - squaring an argument	function-2-squaring-an-argument	2022-07-13T17:27:16.310Z	['cpp']
+540afbe2dc9f615d5e000425	Validate Sudoku with size `NxN`	validate-sudoku-with-size-nxn	2022-06-21T11:04:04.185Z	['python']
+629e18298f2d21006516e381	How many permutations where indices change by at most 1	how-many-permutations-where-indices-change-by-at-most-1	2022-06-20T13:53:34.333Z	['python']
 58db9545facc51e3db00000a	A Simple Music Encoder	a-simple-music-encoder	2022-06-13T13:01:40.015Z	['python']
 546f922b54af40e1e90001da	Replace With Alphabet Position	replace-with-alphabet-position	2022-06-11T17:55:25.622Z	['python']
 57a0556c7cb1f31ab3000ad7	MakeUpperCase	makeuppercase	2022-06-06T14:55:40.870Z	['cpp']

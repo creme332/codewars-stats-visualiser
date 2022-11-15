@@ -6,6 +6,7 @@ from ratelimit import limits, sleep_and_retry
 CALLS = 50
 RATE_LIMIT = 60
 
+
 @sleep_and_retry
 @limits(calls=CALLS, period=RATE_LIMIT)
 def call_api(url):
@@ -19,7 +20,7 @@ def ExtractCompletedChallenges(user, destination_filename):
     page = 0  # zero-based count
     all_challenges = []
 
-    while(True):
+    while (True):
         current_url = ('http://www.codewars.com/api/v1/users/' + user +
                        '/code-challenges/completed?page=' +
                        str(page))

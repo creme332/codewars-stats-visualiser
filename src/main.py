@@ -1,3 +1,5 @@
+#!venv/bin/python3
+
 from dataminer import ExtractCompletedChallenges
 from katalibrary import UpdateKataLibrary
 from heatmap import BasicHeatmap, InteractiveHeatmap
@@ -79,9 +81,9 @@ def CreateKataInfo(compkatas_path, library_path, kata_info_path):
 def main(user):
     start_time = time.time()
 
-    compkatas_path = "data/" + str(user) + "_" + "compkatas"
-    katainfo_path = "data/" + str(user) + "_" + "katainfo"
-    lang_rank_path = "data/" + str(user) + "_" + "langrank"
+    compkatas_path = "data/user-data/" + str(user) + "_" + "compkatas"
+    katainfo_path = "data/user-data/" + str(user) + "_" + "katainfo"
+    lang_rank_path = "data/user-data/" + str(user) + "_" + "langrank"
     library_path = "data/katalibrary.csv"
 
     ExtractCompletedChallenges(user, compkatas_path)
@@ -91,20 +93,21 @@ def main(user):
     # create charts
 
     # Generate charts from compkatas_path
-    BasicHeatmap(-1, compkatas_path, "charts/basicheatmap1.png")
-    BasicHeatmap(2021, compkatas_path, "charts/basicheatmap2.png")
-    TimeSeries(compkatas_path, "charts/timeseries.html")
+    BasicHeatmap(-1, compkatas_path, "output/charts/basicheatmap1.png")
+    BasicHeatmap(2021, compkatas_path, "output/charts/basicheatmap2.png")
+    TimeSeries(compkatas_path, "output/charts/timeseries.html")
 
     # Generate charts from katainfo_path
-    PieChart(katainfo_path, "charts/pie1.html")
-    HorizontalBarChart(katainfo_path, 'charts/bar.html')
+    PieChart(katainfo_path, "output/charts/pie1.html")
+    HorizontalBarChart(katainfo_path, 'output/charts/bar.html')
 
     # Generate charts from both compkatas_path and katainfo_path
     create_language_rank_df(compkatas_path, katainfo_path,
                             lang_rank_path)
-    AnimatedPieChart(lang_rank_path, "charts/pie2.html")
-    InteractiveHeatmap(lang_rank_path, "charts/heatmap2.html")
+    AnimatedPieChart(lang_rank_path, "output/charts/pie2.html")
+    InteractiveHeatmap(lang_rank_path, "output/charts/heatmap2.html")
 
     print("--- %s seconds ---" % (time.time() - start_time))
 
-main('your username here')
+
+main('creme332')
