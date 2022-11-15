@@ -51,10 +51,10 @@ def UpdateKataLibrary(library_path, compkatapath):
                 kata_info.append(input_dict)
             else:
                 missing_katas_ids.append(kata_id)
-
-    print(len(kata_info), "new katas added")
-    print(len(missing_katas_ids), "katas missing from codewars")
-    print(missing_katas_ids)
+    print(len(kata_info), "new katas added to library")
+    if (len(missing_katas_ids) > 0):
+        print(len(missing_katas_ids), "katas missing from codewars API")
+        print(missing_katas_ids)
 
     # remove missing katas from df and update compkatas
     new_df = df[~df.id.isin(missing_katas_ids)]
