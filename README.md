@@ -39,7 +39,7 @@ pip install -r requirements.txt
 ```
 Run program with your username as parameter:
 ```sh
-python src/main.py --username creme332
+python src/main.py --username YOUR_USERNAME
 ```
 Open `output/index.html` to view results.
 You should expect to wait at most 2 mins  for your results to come in.
@@ -52,8 +52,8 @@ Katas in beta have no rank and have been omitted during data analysis.
 - [ ] convert into a web service
 - [x] add python linter
 - [ ] add tests
-- [ ] use github actions to periodically update katalibrary
-- [ ] create virtual env
+- [ ] store katalibrary in Firestore
+- [ ]  use github actions to periodically update katalibrary
 ## Features
 - [ ] Add option to compare different users on the same charts
 - [ ] Add an [interactive calendar heatmap](https://towardsdatascience.com/developing-a-timeseries-heatmap-in-python-using-plotly-fcf1d69575a3) with option to toggle years. (similar to Leetcode's heatmap) 
@@ -64,7 +64,7 @@ Katas in beta have no rank and have been omitted during data analysis.
 ## Data collection
 - [ ] Extract streaks data (most in a single day, most in a single week, most consecutive days)
 - [ ] Extract first and last completed date for each language
-- [ ]  Extract total honor for each language
+- [ ] Extract total honor for each language
 - [ ] Authored katas
 - [ ] Visualise completed kata vs language
 
