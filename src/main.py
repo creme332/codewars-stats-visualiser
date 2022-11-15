@@ -11,6 +11,7 @@ import time
 import ast
 from ast import literal_eval
 import pandas as pd
+import argparse
 
 
 def create_language_rank_df(compkatas_path,
@@ -110,4 +111,9 @@ def main(user):
     print("--- %s seconds ---" % (time.time() - start_time))
 
 
-main('creme332')
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--username', dest='username',
+                        type=str, help='Add valid codewars username')
+    args = parser.parse_args()
+    main(args.username)
